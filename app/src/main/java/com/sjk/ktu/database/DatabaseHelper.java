@@ -12,11 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by NgocTri on 11/7/2015.
+ * Created by Sonia on 24/10/2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
+    //your database name
     public static final String DBNAME = "sample.sqlite";
+    //database location
     public static final String DBLOCATION = "/data/data/com.sjk.ktu/databases/";
+    //table name
+    public static final String TABLE = "Product";
+
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -53,7 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Product product = null;
         List<Product> productList = new ArrayList<>();
         openDatabase();
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM Product", null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+TABLE, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             product = new Product(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3));
